@@ -2,20 +2,24 @@ package com.didi.lof.presentation.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.didi.lof.R
 import com.didi.lof.presentation.adapter.ListListener
 import com.didi.lof.presentation.adapter.TeamsAdapter
+import com.didi.lof.presentation.presenter.TeamsPresenter
 import com.didi.lof.presentation.presenter.TeamsPresenterImpl
 import com.didi.lof.presentation.view.viewmodel.TeamsItemViewModel
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_teams.*
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class TeamsActivity : AppCompatActivity(), TeamsView, ListListener {
 
-    private val teamsPresenter = TeamsPresenterImpl(this)
+    @Inject
+    lateinit var teamsPresenter: TeamsPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

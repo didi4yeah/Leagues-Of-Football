@@ -2,9 +2,11 @@ package com.didi.lof
 
 import android.app.Application
 import com.facebook.stetho.Stetho
+import dagger.hilt.android.HiltAndroidApp
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+@HiltAndroidApp
 class LofApplication: Application() {
     companion object {
         lateinit var retrofit: Retrofit
