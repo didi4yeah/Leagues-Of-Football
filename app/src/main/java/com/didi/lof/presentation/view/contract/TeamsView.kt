@@ -1,4 +1,4 @@
-package com.didi.lof.presentation.view
+package com.didi.lof.presentation.view.contract
 
 import androidx.annotation.StringRes
 import com.didi.lof.presentation.view.viewmodel.TeamsItemViewModel

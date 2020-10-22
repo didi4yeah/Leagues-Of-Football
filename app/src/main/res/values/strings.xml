@@ -3,4 +3,5 @@
     <string name="error_network_service">Oopsie! Network issue as it seems to be :S</string>
     <string name="error_no_team">Oopsie! No team found :S</string>
     <string name="accessibility_team_logo">Team logo</string>
+    <string name="accessibility_banner_image">Banner image</string>
 </resources>

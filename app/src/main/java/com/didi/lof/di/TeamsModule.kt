@@ -7,10 +7,14 @@ import com.didi.core.usecase.GetTeam
 import com.didi.core.usecase.GetTeamsFromLeague
 import com.didi.lof.framework.remote.RemoteTeamDataSource
 import com.didi.lof.framework.usecase.TeamUseCases
-import com.didi.lof.presentation.presenter.TeamsPresenter
+import com.didi.lof.presentation.presenter.TeamDetailsPresenterImpl
 import com.didi.lof.presentation.presenter.TeamsPresenterImpl
+import com.didi.lof.presentation.presenter.contract.TeamDetailsPresenter
+import com.didi.lof.presentation.presenter.contract.TeamsPresenter
+import com.didi.lof.presentation.view.TeamDetailsActivity
 import com.didi.lof.presentation.view.TeamsActivity
-import com.didi.lof.presentation.view.TeamsView
+import com.didi.lof.presentation.view.contract.TeamDetailsView
+import com.didi.lof.presentation.view.contract.TeamsView
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -31,6 +35,18 @@ abstract class TeamsBindingModule {
     abstract fun bindTeamDataSource(remoteTeamDataSource: RemoteTeamDataSource): TeamDataSource
 }
 
+@Module
+@InstallIn(ActivityComponent::class)
+abstract class TeamDetailsBindingModule {
+
+    @Binds
+    abstract fun bindTeamDetailsActivity(activity: TeamDetailsActivity): TeamDetailsView
+
+    @Binds
+    abstract fun bindTeamDetailsPresenter(teamDetailsPresenterImpl: TeamDetailsPresenterImpl): TeamDetailsPresenter
+}
+
+
 @InstallIn(ActivityComponent::class)
 @Module
 object TeamsPresentationModule {
@@ -45,6 +61,22 @@ object TeamsPresentationModule {
         view: TeamsView,
         teamUseCases: TeamUseCases
     ) = TeamsPresenterImpl(view, teamUseCases)
+}
+
+@InstallIn(ActivityComponent::class)
+@Module
+object TeamDetailsPresentationModule {
+
+    @Provides
+    fun provideActivity(activity: Activity): TeamDetailsActivity {
+        return activity as TeamDetailsActivity
+    }
+
+    @Provides
+    fun provideTeamDetailsPresenterImpl(
+        view: TeamDetailsView,
+        teamUseCases: TeamUseCases
+    ) = TeamDetailsPresenterImpl(view, teamUseCases)
 }
 
 @Module

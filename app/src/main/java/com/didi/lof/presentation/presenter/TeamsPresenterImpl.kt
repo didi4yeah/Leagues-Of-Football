@@ -5,7 +5,8 @@ import com.didi.core.repository.Outcome
 import com.didi.core.repository.TeamRepositoryError
 import com.didi.lof.R
 import com.didi.lof.framework.usecase.TeamUseCases
-import com.didi.lof.presentation.view.TeamsView
+import com.didi.lof.presentation.presenter.contract.TeamsPresenter
+import com.didi.lof.presentation.view.contract.TeamsView
 import com.didi.lof.presentation.view.viewmodel.TeamsItemViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

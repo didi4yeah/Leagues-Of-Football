@@ -6,7 +6,7 @@ import com.didi.core.repository.TeamRepositoryError
 import com.didi.lof.CoroutineTestRule
 import com.didi.lof.R
 import com.didi.lof.framework.usecase.TeamUseCases
-import com.didi.lof.presentation.view.TeamsView
+import com.didi.lof.presentation.view.contract.TeamsView
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
@@ -18,9 +18,9 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
+@ExperimentalCoroutinesApi
 class TeamsPresenterImplTest {
 
-    @ExperimentalCoroutinesApi
     @get:Rule
     val coroutineTestRule = CoroutineTestRule()
 
@@ -38,7 +38,6 @@ class TeamsPresenterImplTest {
         MockKAnnotations.init(this)
     }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun presentTeams() {
         val leagueId = 4334
@@ -63,12 +62,11 @@ class TeamsPresenterImplTest {
 
         coVerify {
             view.displayTeams(
-                listOf(sampleTeamsListItemViewModel(), sampleTeamsListItemViewModel())
+                listOf(sampleTeamsItemViewModel(), sampleTeamsItemViewModel())
             )
         }
     }
 
-    @ExperimentalCoroutinesApi
     @Test
     fun presentTeams_whenError_shouldDisplayError() {
         val leagueId = 4334

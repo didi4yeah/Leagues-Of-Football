@@ -1,14 +1,15 @@
 package com.didi.lof.presentation.view
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.didi.lof.R
 import com.didi.lof.presentation.adapter.ListListener
 import com.didi.lof.presentation.adapter.TeamsAdapter
-import com.didi.lof.presentation.presenter.TeamsPresenter
-import com.didi.lof.presentation.presenter.TeamsPresenterImpl
+import com.didi.lof.presentation.presenter.contract.TeamsPresenter
+import com.didi.lof.presentation.view.contract.TeamsView
 import com.didi.lof.presentation.view.viewmodel.TeamsItemViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,6 +18,16 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class TeamsActivity : AppCompatActivity(), TeamsView, ListListener {
+
+    companion object IntentExtra {
+        private const val EXTRA_TEAM_ID = "TEAM_ID"
+
+        var Intent.teamId: Int
+            get() = getIntExtra(EXTRA_TEAM_ID, 0)
+            set(teamId) {
+                putExtra(EXTRA_TEAM_ID, teamId)
+            }
+    }
 
     @Inject
     lateinit var teamsPresenter: TeamsPresenter
@@ -61,6 +72,8 @@ class TeamsActivity : AppCompatActivity(), TeamsView, ListListener {
     }
 
     override fun onItemTeamClick(itemId: Int) {
-        TODO("Not yet implemented")
+        Intent(this, TeamDetailsActivity::class.java)
+            .apply { teamId = itemId }
+            .also { startActivity(it) }
     }
 }
