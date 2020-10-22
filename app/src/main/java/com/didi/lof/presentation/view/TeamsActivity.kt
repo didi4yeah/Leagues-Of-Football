@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
 import com.didi.lof.R
+import com.didi.lof.presentation.adapter.ListListener
+import com.didi.lof.presentation.adapter.TeamsAdapter
 import com.didi.lof.presentation.presenter.TeamsPresenterImpl
 import com.didi.lof.presentation.view.viewmodel.TeamsItemViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_teams.*
 
-class TeamsActivity : AppCompatActivity(), TeamsView {
+class TeamsActivity : AppCompatActivity(), TeamsView, ListListener {
 
     private val teamsPresenter = TeamsPresenterImpl(this)
 
@@ -19,6 +22,11 @@ class TeamsActivity : AppCompatActivity(), TeamsView {
         setContentView(R.layout.activity_teams)
 
         initTeams(4334) //French league
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        teamsPresenter.onDestroy()
     }
 
     private fun initTeams(leagueId: Int) {
@@ -36,11 +44,19 @@ class TeamsActivity : AppCompatActivity(), TeamsView {
 
     override fun displayTeams(teamsViewModel: List<TeamsItemViewModel>) {
         hideLoading()
-        Log.d("DEBUG", "size => $teamsViewModel.size")
+        teamsRecyclerView.apply {
+            setHasFixedSize(true)
+            layoutManager = GridLayoutManager(this@TeamsActivity, 2)
+            adapter = TeamsAdapter(teamsViewModel, this@TeamsActivity)
+        }
     }
 
     override fun displayError(errorRes: Int) {
         Snackbar.make(teamsFrameLayout, errorRes, Snackbar.LENGTH_LONG).show()
         hideLoading()
+    }
+
+    override fun onItemTeamClick(itemId: Int) {
+        TODO("Not yet implemented")
     }
 }
