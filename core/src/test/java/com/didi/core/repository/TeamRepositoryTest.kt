@@ -2,23 +2,26 @@ package com.didi.core.repository
 
 import com.didi.core.repository.TeamFixtures.Companion.sampleTeamDetails
 import com.didi.core.repository.TeamFixtures.Companion.sampleTeamList
+import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
-import io.mockk.mockk
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
 
 class TeamRepositoryTest {
 
+    @MockK
     lateinit var teamDataSource: TeamDataSource
 
+    @InjectMockKs
     lateinit var repository: TeamRepository
 
     @Before
     fun setUp() {
-        teamDataSource = mockk()
-        repository = TeamRepository(teamDataSource)
+        MockKAnnotations.init(this)
     }
 
     @Test

@@ -12,4 +12,5 @@ interface TeamDataSource {
 
 sealed class TeamRepositoryError {
     object UnknownError : TeamRepositoryError()
+    object NoTeamError: TeamRepositoryError()
 }

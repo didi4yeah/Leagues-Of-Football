@@ -4,8 +4,11 @@ import com.didi.core.repository.Outcome
 import com.didi.core.repository.TeamDataSource
 import com.didi.core.repository.TeamFixtures
 import com.didi.core.repository.TeamRepository
+import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
+import io.mockk.impl.annotations.InjectMockKs
+import io.mockk.impl.annotations.MockK
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -13,14 +16,15 @@ import org.junit.Test
 
 class GetTeamsFromLeagueTest {
 
+    @MockK
     lateinit var teamDataSource: TeamDataSource
 
+    @InjectMockKs
     lateinit var repository: TeamRepository
 
     @Before
     fun setUp() {
-        teamDataSource = mockk()
-        repository = TeamRepository(teamDataSource)
+        MockKAnnotations.init(this)
     }
 
     @Test
