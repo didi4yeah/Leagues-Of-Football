@@ -1,4 +1,4 @@
-package com.didi.lof.framework.remote.data
+package com.didi.lof.framework.remote.data.team
 
 data class TeamEntity(
     val idTeam: String,

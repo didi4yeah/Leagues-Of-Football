@@ -2,7 +2,7 @@ package com.didi.lof.presentation.presenter
 
 import com.didi.core.data.TeamDetails
 import com.didi.core.repository.Outcome
-import com.didi.core.repository.TeamRepositoryError
+import com.didi.core.repository.team.TeamRepositoryError
 import com.didi.lof.R
 import com.didi.lof.framework.usecase.TeamUseCases
 import com.didi.lof.presentation.presenter.contract.TeamDetailsPresenter
@@ -20,10 +20,9 @@ class TeamDetailsPresenterImpl @Inject constructor(
 ) : TeamDetailsPresenter {
 
     private val job = Job()
-    private val scopeMain = CoroutineScope(job + Dispatchers.Main)
-    private val scopeIO = CoroutineScope(job + Dispatchers.IO)
 
     override fun presentTeam(teamId: Int) {
+        val scopeIO = CoroutineScope(job + Dispatchers.IO)
         scopeIO.launch {
             val outcome = teamUseCases.getTeam(teamId)
             handleOutcome(outcome)
@@ -31,6 +30,7 @@ class TeamDetailsPresenterImpl @Inject constructor(
     }
 
     private fun handleOutcome(outcome: Outcome<TeamDetails, TeamRepositoryError>) {
+        val scopeMain = CoroutineScope(job + Dispatchers.Main)
         when (outcome) {
             is Outcome.Success -> scopeMain.launch {
                 with(outcome.data) {

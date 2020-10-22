@@ -6,18 +6,23 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.didi.lof.R
+import com.didi.lof.presentation.adapter.LeagueArrayAdapter
 import com.didi.lof.presentation.adapter.ListListener
 import com.didi.lof.presentation.adapter.TeamsAdapter
+import com.didi.lof.presentation.presenter.contract.LeaguePresenter
 import com.didi.lof.presentation.presenter.contract.TeamsPresenter
+import com.didi.lof.presentation.view.contract.LeaguesView
 import com.didi.lof.presentation.view.contract.TeamsView
+import com.didi.lof.presentation.view.viewmodel.LeagueViewModel
 import com.didi.lof.presentation.view.viewmodel.TeamsItemViewModel
+import com.didi.lof.utils.hideKeyboard
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_teams.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class TeamsActivity : AppCompatActivity(), TeamsView, ListListener {
+class TeamsActivity : AppCompatActivity(), TeamsView, LeaguesView, ListListener {
 
     companion object IntentExtra {
         private const val EXTRA_TEAM_ID = "TEAM_ID"
@@ -27,24 +32,44 @@ class TeamsActivity : AppCompatActivity(), TeamsView, ListListener {
             set(teamId) {
                 putExtra(EXTRA_TEAM_ID, teamId)
             }
+
+        const val SPORT_TYPE = "Soccer" //Since we are Leagues Of Football but easy to change sport (i.e. Basketball)
     }
 
     @Inject
     lateinit var teamsPresenter: TeamsPresenter
 
+    @Inject
+    lateinit var leaguePresenter: LeaguePresenter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_teams)
 
-        initTeams(4334) //French league
+        initSearch()
     }
 
     override fun onDestroy() {
         super.onDestroy()
         teamsPresenter.onDestroy()
+        leaguePresenter.onDestroy()
+    }
+
+    private fun initSearch() {
+        leaguePresenter.presentLeagues(SPORT_TYPE)
+
+        teamsAutoCompleteTextView.apply {
+            threshold = 2
+
+            setOnItemClickListener { parent, _, position, _ ->
+                val item = parent.getItemAtPosition(position) as LeagueViewModel
+                initTeams(item.leagueId)
+            }
+        }
     }
 
     private fun initTeams(leagueId: Int) {
+        hideKeyboard()
         displayLoading()
         teamsPresenter.presentTeams(leagueId)
     }
@@ -64,6 +89,14 @@ class TeamsActivity : AppCompatActivity(), TeamsView, ListListener {
             layoutManager = GridLayoutManager(this@TeamsActivity, 2)
             adapter = TeamsAdapter(teamsViewModel, this@TeamsActivity)
         }
+    }
+
+    override fun displayLeagues(leagues: List<LeagueViewModel>) {
+        teamsAutoCompleteTextView.setAdapter(
+            LeagueArrayAdapter(
+                this, android.R.layout.simple_dropdown_item_1line, leagues
+            )
+        )
     }
 
     override fun displayError(errorRes: Int) {

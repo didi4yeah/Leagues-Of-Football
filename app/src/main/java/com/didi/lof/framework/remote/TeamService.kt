@@ -1,6 +1,6 @@
 package com.didi.lof.framework.remote
 
-import com.didi.lof.framework.remote.data.TeamsResponse
+import com.didi.lof.framework.remote.data.team.TeamsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

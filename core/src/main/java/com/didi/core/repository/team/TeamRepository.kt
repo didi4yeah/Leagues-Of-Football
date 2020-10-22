@@ -1,4 +1,4 @@
-package com.didi.core.repository
+package com.didi.core.repository.team
 
 class TeamRepository constructor(private val teamDataSource: TeamDataSource) {
 

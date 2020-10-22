@@ -1,5 +1,7 @@
 package com.didi.lof.di
 
+import com.didi.lof.framework.remote.LeagueService
+import com.didi.lof.framework.remote.RemoteLeagueDataSource
 import com.didi.lof.framework.remote.RemoteTeamDataSource
 import com.didi.lof.framework.remote.TeamService
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -32,7 +34,16 @@ object NetworkModule {
         retrofit.create(TeamService::class.java)
 
     @Provides
+    fun provideLeagueService(retrofit: Retrofit): LeagueService =
+        retrofit.create(LeagueService::class.java)
+
+    @Provides
     fun provideRemoteTeamDataSource(
         teamService: TeamService
     ) = RemoteTeamDataSource(teamService)
+
+    @Provides
+    fun provideRemoteLeagueDataSource(
+        leagueService: LeagueService
+    ) = RemoteLeagueDataSource(leagueService)
 }

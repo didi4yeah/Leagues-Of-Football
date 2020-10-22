@@ -4,4 +4,5 @@
     <string name="error_no_team">Oopsie! No team found :S</string>
     <string name="accessibility_team_logo">Team logo</string>
     <string name="accessibility_banner_image">Banner image</string>
+    <string name="hint_select_a_league">Select a league</string>
 </resources>

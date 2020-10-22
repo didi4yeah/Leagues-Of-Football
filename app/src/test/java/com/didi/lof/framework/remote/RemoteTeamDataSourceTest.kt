@@ -3,10 +3,9 @@ package com.didi.lof.framework.remote
 import com.didi.core.data.Team
 import com.didi.core.data.TeamDetails
 import com.didi.core.repository.Outcome
-import com.didi.core.repository.TeamRepositoryError
+import com.didi.core.repository.team.TeamRepositoryError
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
-import io.mockk.impl.annotations.InjectMockKs
 import io.mockk.impl.annotations.MockK
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert

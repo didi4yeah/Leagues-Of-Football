@@ -1,7 +1,8 @@
-package com.didi.core.repository
+package com.didi.core.repository.team
 
 import com.didi.core.data.Team
 import com.didi.core.data.TeamDetails
+import com.didi.core.repository.Outcome
 
 interface TeamDataSource {
 

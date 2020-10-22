@@ -3,8 +3,8 @@ package com.didi.lof.framework.remote
 import com.didi.core.data.Team
 import com.didi.core.data.TeamDetails
 import com.didi.core.repository.Outcome
-import com.didi.core.repository.TeamDataSource
-import com.didi.core.repository.TeamRepositoryError
+import com.didi.core.repository.team.TeamDataSource
+import com.didi.core.repository.team.TeamRepositoryError
 import com.didi.lof.framework.remote.data.toTeam
 import com.didi.lof.framework.remote.data.toTeamDetails
 

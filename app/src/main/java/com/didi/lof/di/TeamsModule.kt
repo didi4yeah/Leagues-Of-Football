@@ -1,10 +1,10 @@
 package com.didi.lof.di
 
 import android.app.Activity
-import com.didi.core.repository.TeamDataSource
-import com.didi.core.repository.TeamRepository
-import com.didi.core.usecase.GetTeam
-import com.didi.core.usecase.GetTeamsFromLeague
+import com.didi.core.repository.team.TeamDataSource
+import com.didi.core.repository.team.TeamRepository
+import com.didi.core.usecase.team.GetTeam
+import com.didi.core.usecase.team.GetTeamsFromLeague
 import com.didi.lof.framework.remote.RemoteTeamDataSource
 import com.didi.lof.framework.usecase.TeamUseCases
 import com.didi.lof.presentation.presenter.TeamDetailsPresenterImpl

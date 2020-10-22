@@ -2,7 +2,7 @@ package com.didi.lof.presentation.presenter
 
 import com.didi.core.data.TeamDetails
 import com.didi.core.repository.Outcome
-import com.didi.core.repository.TeamRepositoryError
+import com.didi.core.repository.team.TeamRepositoryError
 import com.didi.lof.CoroutineTestRule
 import com.didi.lof.R
 import com.didi.lof.framework.usecase.TeamUseCases

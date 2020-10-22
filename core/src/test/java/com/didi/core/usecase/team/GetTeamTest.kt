@@ -1,9 +1,10 @@
-package com.didi.core.usecase
+package com.didi.core.usecase.team
 
-import com.didi.core.repository.Outcome
-import com.didi.core.repository.TeamDataSource
 import com.didi.core.repository.TeamFixtures.Companion.sampleTeamDetails
-import com.didi.core.repository.TeamRepository
+import com.didi.core.repository.Outcome
+import com.didi.core.repository.team.TeamDataSource
+import com.didi.core.repository.team.TeamRepository
+import com.didi.core.usecase.team.GetTeam
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.coVerify
