@@ -17,6 +17,7 @@ class RemoteTeamDataSource constructor(
         try {
             teams = teamService
                 .getTeamsFromLeague(leagueId)
+                .teams
                 .map { it.toTeam() }
         } catch (e: Exception) {
             return Outcome.Error(TeamRepositoryError.UnknownError)
@@ -27,7 +28,7 @@ class RemoteTeamDataSource constructor(
     override suspend fun getTeam(teamId: Int): Outcome<TeamDetails, TeamRepositoryError> {
         val team: TeamDetails
         try {
-            team = teamService.getTeam(teamId).firstOrNull()?.toTeamDetails()
+            team = teamService.getTeam(teamId).teams.firstOrNull()?.toTeamDetails()
                 ?: return Outcome.Error(TeamRepositoryError.NoTeamError)
         } catch (e: Exception) {
             return Outcome.Error(TeamRepositoryError.UnknownError)
