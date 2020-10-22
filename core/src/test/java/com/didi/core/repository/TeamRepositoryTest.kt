@@ -11,9 +11,9 @@ import org.junit.Test
 
 class TeamRepositoryTest {
 
-    private lateinit var teamDataSource: TeamDataSource
+    lateinit var teamDataSource: TeamDataSource
 
-    private lateinit var repository: TeamRepository
+    lateinit var repository: TeamRepository
 
     @Before
     fun setUp() {
@@ -25,7 +25,7 @@ class TeamRepositoryTest {
     fun getTeamsFromLeague() {
         val leagueId = 4334
 
-        coEvery { repository.getTeamsFromLeague(leagueId) } returns sampleTeamList()
+        coEvery { repository.getTeamsFromLeague(leagueId) } returns Outcome.Success(sampleTeamList())
 
         runBlocking { repository.getTeamsFromLeague(leagueId) }
 
@@ -36,7 +36,7 @@ class TeamRepositoryTest {
     fun getTeam() {
         val teamId = 133713
 
-        coEvery { repository.getTeam(teamId) } returns sampleTeamDetails()
+        coEvery { repository.getTeam(teamId) } returns Outcome.Success(sampleTeamDetails())
 
         runBlocking { repository.getTeam(teamId) }
 
