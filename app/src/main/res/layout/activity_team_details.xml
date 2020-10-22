@@ -26,10 +26,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
+        <!-- All banners seems to be this ratio 1000:85 => H,200:37 -->
         <ImageView
             android:id="@+id/bannerImageView"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,200:37"
             android:contentDescription="@string/accessibility_banner_image"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/bannerImageView"
-            tools:text="My awesome team" />
+            tools:text="My awesome team that i love very very very much" />
 
         <TextView
             android:id="@+id/teamDescTextView"

@@ -27,6 +27,7 @@ class TeamsAdapter(
             with(teamsViewModel[position]) {
                 logoImageView.load(this.logoPicture) {
                     placeholder(R.drawable.ic_football)
+                    error(R.drawable.ic_football)
                 }
                 setOnClickListener { listener.onItemTeamClick(this.teamId) }
             }

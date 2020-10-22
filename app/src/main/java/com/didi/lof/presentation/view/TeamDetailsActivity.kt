@@ -5,7 +5,9 @@ import android.view.MenuItem
 import android.view.View
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import coil.annotation.ExperimentalCoilApi
 import coil.load
+import coil.transition.CrossfadeTransition
 import com.didi.lof.R
 import com.didi.lof.presentation.presenter.contract.TeamDetailsPresenter
 import com.didi.lof.presentation.view.TeamsActivity.IntentExtra.teamId
@@ -53,12 +55,15 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsView {
         presenter.presentTeam(teamId)
     }
 
+    @ExperimentalCoilApi
     override fun displayTeam(teamDetailsViewModel: TeamDetailsViewModel) {
         hideLoading()
         title = teamDetailsViewModel.name
         teamLeagueTextView.text = teamDetailsViewModel.leagueCountryName
         teamDescTextView.text = teamDetailsViewModel.description
-        bannerImageView.load(teamDetailsViewModel.bannerPicture)
+        bannerImageView.load(teamDetailsViewModel.bannerPicture) {
+            transition(CrossfadeTransition())
+        }
     }
 
     override fun displayError(@StringRes errorRes: Int) {

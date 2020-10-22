@@ -4,7 +4,7 @@ data class TeamEntity(
     val idTeam: String,
     val intFormedYear: String,
     val strCountry: String,
-    val strDescriptionFR: String,
+    val strDescriptionEN: String,
     val strLeague: String,
     val strStadium: String,
     val strTeam: String,
