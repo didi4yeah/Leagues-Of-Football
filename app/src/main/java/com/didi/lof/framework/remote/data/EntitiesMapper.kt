@@ -17,9 +17,9 @@ fun TeamEntity.toTeamDetails() = TeamDetails(
     name = this.strTeam,
     logoPicture = this.strTeamBadge,
     countryName = this.strCountry,
-    description = this.strDescriptionEN,
+    description = this.strDescriptionEN ?: "",
     leagueName = this.strLeague,
-    stadiumName = this.strStadium,
+    stadiumName = this.strStadium ?: "",
     bannerPicture = this.strTeamBanner
 )
 

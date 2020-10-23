@@ -23,14 +23,15 @@ class TeamsAdapter(
         )
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
+        val teamViewModel = teamsViewModel[position]
         holder.itemView.apply {
-            with(teamsViewModel[position]) {
-                logoImageView.load(this.logoPicture) {
+            teamViewModel.logoPicture?.let {
+                logoImageView.load(it) {
                     placeholder(R.drawable.ic_football)
                     error(R.drawable.ic_football)
                 }
-                setOnClickListener { listener.onItemTeamClick(this.teamId) }
-            }
+            } ?: logoImageView.load(R.drawable.ic_football)
+            setOnClickListener { listener.onItemTeamClick(teamViewModel.teamId) }
         }
     }
 

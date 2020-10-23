@@ -61,9 +61,11 @@ class TeamDetailsActivity : AppCompatActivity(), TeamDetailsView {
         title = teamDetailsViewModel.name
         teamLeagueTextView.text = teamDetailsViewModel.leagueCountryName
         teamDescTextView.text = teamDetailsViewModel.description
-        bannerImageView.load(teamDetailsViewModel.bannerPicture) {
-            transition(CrossfadeTransition())
-        }
+        teamDetailsViewModel.bannerPicture?.let {
+            bannerImageView.load(teamDetailsViewModel.bannerPicture) {
+                transition(CrossfadeTransition())
+            }
+        } ?: run { bannerImageView.visibility = View.GONE }
     }
 
     override fun displayError(@StringRes errorRes: Int) {
