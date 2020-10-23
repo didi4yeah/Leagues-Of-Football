@@ -15,7 +15,8 @@ There are 2 modules in the app.
    And ui interaction and display as ***presentation***  
    Dependency injection is also set up in this module  
    
-Presenters will act as middle-man between ****model**** and ***view***  
+Presenters will act as middle-man between ****model**** and ***view*** as it satnds in MVP  
+Also trying to apply some ***clean archi*** principle ;)  
 
 ## TODO  
 
