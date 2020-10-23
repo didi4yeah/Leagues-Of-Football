@@ -14,6 +14,8 @@ There are 2 modules in the app.
    Also android framework dependent implementations  
    And ui interaction and display as ***presentation***  
    Dependency injection is also set up in this module  
+   
+Presenters will act as middle-man between ****model**** and ***view***  
 
 ## TODO  
 
