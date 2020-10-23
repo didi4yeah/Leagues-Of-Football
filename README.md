@@ -16,7 +16,7 @@ There are 2 modules in the app.
    Dependency injection is also set up in this module  
    
 Presenters will act as middle-man between ****model**** and ***view*** as it satnds in MVP  
-Also trying to apply some ***clean archi*** principle ;)  
+Also tempt to apply some ***clean archi*** principle ;)  
 
 ## TODO  
 
