@@ -21,6 +21,7 @@ There are 2 modules in the app.
 * Clearable AutoCompleteTextView
 * More abstraction
 * Add league part tests (no more TDD at the end...)  
+* Add a freaking logo for the app  
 
 ## BONUS  
 
